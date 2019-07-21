@@ -6,7 +6,7 @@
   --color-secondary-transparent: rgba(186, 203, 248, 0.5);
 
   --color-grey-dark: #777;
-  --color-grey-light: #e6e6e6;
+  --color-grey-light: rgba(119, 119, 119, 0.1);
   --color-white: #f2f2f2;
 }
 
@@ -55,6 +55,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
 .main-timer {
   height: 40rem;
   width: 40rem;
@@ -63,6 +70,7 @@ body {
   border: solid 3rem var(--color-secondary-transparent);
   box-shadow: 0 0 5rem rgba(0, 0, 0, 0.1);
 
+  order: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -92,12 +100,98 @@ body {
       height: 3.2rem;
       width: 3.2rem;
       color: var(--color-grey-light);
-      transition: color .2s ease-out;
+      transition: color 0.2s ease-out;
       cursor: pointer;
 
       &:hover {
         color: var(--color-primary-transparent);
       }
+    }
+  }
+}
+
+.controller {
+  & .control-box {
+    width: 16rem;
+    height: 16rem;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    border-radius: 4rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+
+    & button {
+      height: 6rem;
+      width: 6rem;
+      opacity: 0.5;
+      transition: opacity 0.2s ease-out;
+      cursor: pointer;
+
+      & svg {
+        height: 2.4rem;
+        width: 2.4rem;
+        color: var(--color-white);
+        transition: filter 0.2s ease-out;
+      }
+
+      &.increment {
+        background-color: var(--color-secondary);
+        order: 1;
+      }
+
+      &.decrement {
+        background-color: var(--color-primary);
+        order: 3;
+      }
+
+      &:hover {
+        opacity: 0.8;
+
+        & svg {
+          filter: drop-shadow(1px 3px 1px rgba(119, 119, 119, 0.3));
+        }
+      }
+    }
+
+    & .length {
+      font-size: 4.8rem;
+      order: 2;
+    }
+  }
+
+  .label {
+    font-size: 3.2rem;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    color: var(--color-grey-light);
+    padding: 2rem;
+  }
+
+  &.session-controller {
+    order: 3;
+
+    & .increment {
+      align-self: flex-end;
+      border-radius: 2rem 0 2rem 0;
+    }
+
+    & .decrement {
+      border-radius: 2rem 0 2rem 0;
+    }
+  }
+
+  &.break-controller {
+    order: 1;
+
+    & .increment {
+      border-radius: 0 2rem 0 2rem;
+    }
+
+    & .decrement {
+      align-self: flex-end;
+      border-radius: 0 2rem 0 2rem;
     }
   }
 }
