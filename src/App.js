@@ -1,10 +1,9 @@
 import React from 'react'
+import MainTimer from './components/MainTimer';
 
 function App() {
   return <div>
-    <div className="main">
-      <div className="inner"></div>
-    </div>
+    <MainTimer />
   </div>
 }
 
