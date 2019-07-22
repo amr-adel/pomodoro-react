@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import icons from '../icons.svg'
+import { TimerContext } from '../contexts/TimerContext'
 
-const Controller = ({ type }) => {
+const Controller = ({ controllerLabel }) => {
+  const { state, dispatch } = useContext(TimerContext)
+
   return (
-    <div className={`controller ${type}-controller`}>
+    <div className={`controller ${controllerLabel}-controller`}>
       <div className='control-box'>
-        <div id={`${type}-length`} className='length'>
-          {type === 'break' ? 5 : 25}
+        <div id={`${controllerLabel}-length`} className='length'>
+          {state[`${controllerLabel}Length`]}
         </div>
-        <button id={`${type}-increment`} className='increment'>
+        <button
+          id={`${controllerLabel}-increment`}
+          className='increment'
+          onClick={() => dispatch({ type: `${controllerLabel.toUpperCase()}_INC` })}>
           <svg>
             <use href={`${icons}#plus`} />
           </svg>
         </button>
-        <button id={`${type}-decrement`} className='decrement'>
+        <button
+          id={`${controllerLabel}-decrement`}
+          className='decrement'
+          onClick={() => dispatch({ type: `${controllerLabel.toUpperCase()}_DEC` })}>
           <svg>
             <use href={`${icons}#minus`} />
           </svg>
         </button>
       </div>
 
-      <div id={`${type}-label`} className='label'>
-        {type}
+      <div id={`${controllerLabel}-label`} className='label'>
+        {controllerLabel}
       </div>
     </div>
   )
