@@ -5,6 +5,18 @@ import { TimerContext } from '../contexts/TimerContext'
 const Controller = ({ controllerLabel }) => {
   const { state, dispatch } = useContext(TimerContext)
 
+  const isDisabled = label => {
+    if (state.active) {
+      return ' disabled'
+    } else if (label === 'increment' && state[`${controllerLabel}Length`] === 60) {
+      return ' disabled'
+    } else if (label === 'decrement' && state[`${controllerLabel}Length`] === 1) {
+      return ' disabled'
+    } else {
+      return ''
+    }
+  }
+
   return (
     <div className={`controller ${controllerLabel}-controller`}>
       <div className='control-box'>
@@ -13,7 +25,7 @@ const Controller = ({ controllerLabel }) => {
         </div>
         <button
           id={`${controllerLabel}-increment`}
-          className='increment'
+          className={`increment${isDisabled('increment')}`}
           onClick={() => dispatch({ type: `${controllerLabel.toUpperCase()}_INC` })}>
           <svg>
             <use href={`${icons}#plus`} />
@@ -21,7 +33,7 @@ const Controller = ({ controllerLabel }) => {
         </button>
         <button
           id={`${controllerLabel}-decrement`}
-          className='decrement'
+          className={`decrement${isDisabled('decrement')}`}
           onClick={() => dispatch({ type: `${controllerLabel.toUpperCase()}_DEC` })}>
           <svg>
             <use href={`${icons}#minus`} />
