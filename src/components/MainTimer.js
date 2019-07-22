@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import icons from '../icons.svg'
+import { TimerContext } from '../contexts/TimerContext'
 
 const MainTimer = () => {
+  const { state, dispatch } = useContext(TimerContext)
+
   return (
     <div className='main-timer'>
       <div id='timer-label'>session</div>
@@ -12,7 +15,7 @@ const MainTimer = () => {
             <use href={`${icons}#play`} />
           </svg>
         </button>
-        <button id='reset'>
+        <button id='reset' onClick={() => dispatch({ type: 'RESET' })}>
           <svg>
             <use href={`${icons}#reset`} />
           </svg>

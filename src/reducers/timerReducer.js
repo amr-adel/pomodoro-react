@@ -1,3 +1,5 @@
+import { initialState } from '../contexts/TimerContext'
+
 const controlLength = (state, label, operation) => {
   let toModify = `${label}Length`
 
@@ -22,6 +24,8 @@ export const timerReducer = (state, action) => {
       return controlLength(state, 'break', 'increment')
     case 'BREAK_DEC':
       return controlLength(state, 'break', 'decrement')
+    case 'RESET':
+      return initialState
     default:
       return state
   }

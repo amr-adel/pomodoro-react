@@ -3,7 +3,7 @@ import { timerReducer } from '../reducers/timerReducer'
 
 export const TimerContext = createContext()
 
-const initialState = {
+export const initialState = {
   sessionLength: 25,
   breakLength: 5,
   mainTimerLabel: 'session',
