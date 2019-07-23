@@ -40,15 +40,16 @@ const controlLength = (state, label, operation) => {
 
 const startTick = state => {
   state.timer = setInterval(() => {
+    console.log(initialState)
     console.log('TICK!')
   }, 1000)
 
-  return {...state, active: true}
+  return { ...state, active: true }
 }
 
 const stopTick = state => {
   clearInterval(state.timer)
-  return {...state, active: false}
+  return { ...state, active: false }
 }
 
 export const timerReducer = (state, action) => {
@@ -65,7 +66,7 @@ export const timerReducer = (state, action) => {
       return !state.active ? startTick(state) : stopTick(state)
     case 'RESET':
       if (state.timer) clearInterval(state.timer)
-      return initialState
+      return { ...initialState }
     default:
       return state
   }
