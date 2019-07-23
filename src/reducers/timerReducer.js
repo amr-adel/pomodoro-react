@@ -1,12 +1,35 @@
-import { initialState } from '../contexts/TimerContext'
+export const initialState = {
+  sessionLength: 25,
+  breakLength: 5,
+  mainTimerLabel: 'session',
+  active: false,
+  timeLeft: {
+    minutes: 25,
+    seconds: 0
+  }
+}
 
 const controlLength = (state, label, operation) => {
   let toModify = `${label}Length`
 
   if (!state.active) {
     if (operation === 'increment' && state[toModify] < 60) {
+      if (label === 'session') {
+        return {
+          ...state,
+          [toModify]: state[toModify] + 1,
+          timeLeft: { ...state.timeLeft, minutes: state.sessionLength + 1 }
+        }
+      }
       return { ...state, [toModify]: state[toModify] + 1 }
     } else if (operation === 'decrement' && state[toModify] > 1) {
+      if (label === 'session') {
+        return {
+          ...state,
+          [toModify]: state[toModify] - 1,
+          timeLeft: { ...state.timeLeft, minutes: state.sessionLength - 1 }
+        }
+      }
       return { ...state, [toModify]: state[toModify] - 1 }
     }
   }
