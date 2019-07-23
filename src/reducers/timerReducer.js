@@ -12,28 +12,25 @@ export const initialState = {
 const controlLength = (state, label, operation) => {
   let toModify = `${label}Length`
 
-  if (!state.active) {
-    if (operation === 'increment' && state[toModify] < 60) {
-      if (label === 'session') {
-        return {
-          ...state,
-          [toModify]: state[toModify] + 1,
-          timeLeft: { ...state.timeLeft, minutes: state.sessionLength + 1 }
-        }
+  if (operation === 'increment' && state[toModify] < 60) {
+    if (label === 'session') {
+      return {
+        ...state,
+        [toModify]: state[toModify] + 1,
+        timeLeft: { minutes: state.sessionLength + 1, seconds: 0 }
       }
-      return { ...state, [toModify]: state[toModify] + 1 }
-    } else if (operation === 'decrement' && state[toModify] > 1) {
-      if (label === 'session') {
-        return {
-          ...state,
-          [toModify]: state[toModify] - 1,
-          timeLeft: { ...state.timeLeft, minutes: state.sessionLength - 1 }
-        }
-      }
-      return { ...state, [toModify]: state[toModify] - 1 }
     }
+    return { ...state, [toModify]: state[toModify] + 1 }
+  } else if (operation === 'decrement' && state[toModify] > 1) {
+    if (label === 'session') {
+      return {
+        ...state,
+        [toModify]: state[toModify] - 1,
+        timeLeft: { minutes: state.sessionLength - 1, seconds: 0 }
+      }
+    }
+    return { ...state, [toModify]: state[toModify] - 1 }
   }
-
   return state
 }
 
@@ -71,6 +68,7 @@ export const timerReducer = (state, action) => {
     case 'TICK':
       return tick(state)
     case 'RESET':
+      clearInterval(window.timerID)
       return { ...initialState }
     default:
       return state

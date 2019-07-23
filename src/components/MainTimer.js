@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import icons from '../icons.svg'
 import { TimerContext } from '../contexts/TimerContext'
 
@@ -12,18 +12,14 @@ const MainTimer = () => {
     return `${renderMinutes}:${renderSeconds}`
   }
 
-  useEffect(() => {
-    if (state.active) {
-      let timerID = setInterval(() => dispatch({ type: 'TICK' }), 1000)
-
-      return () => {
-        clearInterval(timerID)
-      }
-    }
-  })
-
   const handlePlayPause = active => {
-    dispatch({ type: active ? 'STOP_TIMER' : 'START_TIMER' })
+    if (!active) {
+      dispatch({ type: 'START_TIMER' })
+      window.timerID = setInterval(() => dispatch({ type: 'TICK' }), 1000)
+    } else {
+      clearInterval(window.timerID)
+      dispatch({ type: 'STOP_TIMER' })
+    }
   }
 
   return (
