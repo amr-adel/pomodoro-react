@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import icons from '../icons.svg'
 import { TimerContext } from '../contexts/TimerContext'
 
@@ -12,12 +12,26 @@ const MainTimer = () => {
     return `${renderMinutes}:${renderSeconds}`
   }
 
+  useEffect(() => {
+    if (state.active) {
+      let timerID = setInterval(() => dispatch({ type: 'TICK' }), 1000)
+
+      return () => {
+        clearInterval(timerID)
+      }
+    }
+  })
+
+  const handlePlayPause = active => {
+    dispatch({ type: active ? 'STOP_TIMER' : 'START_TIMER' })
+  }
+
   return (
     <div className='main-timer'>
       <div id='timer-label'>{state.mainTimerLabel}</div>
       <div id='time-left'>{renderTimeLeft()}</div>
       <div className='controls'>
-        <button id='start_stop' onClick={() => dispatch({ type: 'START_STOP' })}>
+        <button id='start_stop' onClick={() => handlePlayPause(state.active)}>
           <svg>
             <use href={`${icons}#${state.active ? 'pause' : 'play'}`} />
           </svg>
