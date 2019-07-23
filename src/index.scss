@@ -87,6 +87,7 @@ body {
     font-size: 9rem;
     letter-spacing: 0.3rem;
     line-height: 3rem;
+    font-variant-numeric: tabular-nums;
   }
 
   & .controls {
@@ -116,6 +117,7 @@ body {
     height: 16rem;
     margin: 0 auto;
     background-color: var(--color-white);
+    font-variant-numeric: tabular-nums;
     border-radius: 4rem;
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
 
