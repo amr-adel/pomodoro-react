@@ -17,9 +17,9 @@ const MainTimer = () => {
       <div id='timer-label'>{state.mainTimerLabel}</div>
       <div id='time-left'>{renderTimeLeft()}</div>
       <div className='controls'>
-        <button id='start_stop'>
+        <button id='start_stop' onClick={() => dispatch({ type: 'START_STOP' })}>
           <svg>
-            <use href={`${icons}#play`} />
+            <use href={`${icons}#${state.active ? 'pause' : 'play'}`} />
           </svg>
         </button>
         <button id='reset' onClick={() => dispatch({ type: 'RESET' })}>

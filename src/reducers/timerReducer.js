@@ -3,6 +3,7 @@ export const initialState = {
   breakLength: 5,
   mainTimerLabel: 'session',
   active: false,
+  timer: false,
   timeLeft: {
     minutes: 25,
     seconds: 0
@@ -37,6 +38,19 @@ const controlLength = (state, label, operation) => {
   return state
 }
 
+const startTick = state => {
+  state.timer = setInterval(() => {
+    console.log('TICK!')
+  }, 1000)
+
+  return {...state, active: true}
+}
+
+const stopTick = state => {
+  clearInterval(state.timer)
+  return {...state, active: false}
+}
+
 export const timerReducer = (state, action) => {
   switch (action.type) {
     case 'SESSION_INC':
@@ -47,7 +61,10 @@ export const timerReducer = (state, action) => {
       return controlLength(state, 'break', 'increment')
     case 'BREAK_DEC':
       return controlLength(state, 'break', 'decrement')
+    case 'START_STOP':
+      return !state.active ? startTick(state) : stopTick(state)
     case 'RESET':
+      if (state.timer) clearInterval(state.timer)
       return initialState
     default:
       return state
