@@ -157,13 +157,13 @@ body {
       }
 
       &.disabled {
-        opacity: .5 !important;
+        opacity: 0.5 !important;
         background-color: var(--color-grey-light) !important;
         cursor: default !important;
 
-        &:hover  svg {
-            filter: none;
-          }
+        &:hover svg {
+          filter: none;
+        }
       }
     }
 

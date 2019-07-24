@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import icons from '../icons.svg'
 import { TimerContext } from '../contexts/TimerContext'
+import icons from '../icons.svg'
 
 const MainTimer = () => {
   const { state, dispatch } = useContext(TimerContext)

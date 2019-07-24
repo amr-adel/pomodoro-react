@@ -1,3 +1,5 @@
+const beep = document.getElementById('beep')
+
 export const initialState = {
   sessionLength: 25,
   breakLength: 5,
@@ -40,8 +42,10 @@ const tick = state => {
   if (minutes === 0 && seconds === 0) {
     if (state.mainTimerLabel === 'session') {
       // START BREAK TIMER
+      beep.play()
       return { ...state, mainTimerLabel: 'break', timeLeft: { minutes: state.breakLength, seconds: 0 } }
     } else {
+      beep.play()
       return { ...initialState }
     }
   } else if (seconds === 0) {
@@ -69,6 +73,8 @@ export const timerReducer = (state, action) => {
       return tick(state)
     case 'RESET':
       clearInterval(window.timerID)
+      beep.pause()
+      beep.currentTime = 0
       return { ...initialState }
     default:
       return state
