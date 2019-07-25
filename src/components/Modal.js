@@ -43,7 +43,7 @@ class Modal extends Component {
             <use href={`${icons}#${this.state.showModal ? 'times' : 'info'}`} />
           </svg>
         </button>
-        {this.state.showModal ? <Portal hideModal={this.handleToggle}>Modal content</Portal> : null}
+        {this.state.showModal ? <Portal hideModal={this.handleToggle}>{this.props.children}</Portal> : null}
       </>
     )
   }
