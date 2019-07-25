@@ -1,5 +1,6 @@
 import React from 'react'
 import icons from '../icons.svg'
+import { loadFCCTestSuite } from './LoadFCCTS'
 
 const ModalContent = () => {
   return (
@@ -10,7 +11,8 @@ const ModalContent = () => {
           This project was part of the{' '}
           <a
             href='https://learn.freecodecamp.org/front-end-libraries/front-end-libraries-projects/build-a-pomodoro-clock/'
-            target='_blank'>
+            target='_blank'
+            rel='noopener noreferrer'>
             FreeCodeCamp
           </a>{' '}
           Front End Libraries Certification, which requires using a frontend framework to build a Pomodoro Clock. the
@@ -18,29 +20,30 @@ const ModalContent = () => {
         </p>
         <p className='text'>
           In this project, I'm using{' '}
-          <a href='https://reactjs.org/' target='_blank'>
+          <a href='https://reactjs.org/' target='_blank' rel='noopener noreferrer'>
             React
           </a>{' '}
           with its new{' '}
-          <a href='https://reactjs.org/docs/context.html' target='_blank'>
+          <a href='https://reactjs.org/docs/context.html' target='_blank' rel='noopener noreferrer'>
             Context API
           </a>{' '}
           and{' '}
-          <a href='https://reactjs.org/docs/hooks-intro.html' target='_blank'>
+          <a href='https://reactjs.org/docs/hooks-intro.html' target='_blank' rel='noopener noreferrer'>
             Hooks
           </a>{' '}
           to build a functional Pomodoro clock.
         </p>
         <p className='text'>
           {' '}
-          <a href='https://reactjs.org/docs/portals.html' target='_blank'>
+          <a href='https://reactjs.org/docs/portals.html' target='_blank' rel='noopener noreferrer'>
             Portal
           </a>{' '}
           was used too, to create this beautiful modal.{' '}
         </p>
+        <button onClick={() => loadFCCTestSuite()}>load FCC Test Suite</button>
         <p className='text'>
           Interested in code? Check the project's repository on{' '}
-          <a href='https://github.com/amr-adel/pomodoro-react' target='_blank'>
+          <a href='https://github.com/amr-adel/pomodoro-react' target='_blank' rel='noopener noreferrer'>
             GitHub
           </a>
           .
@@ -54,42 +57,50 @@ const ModalContent = () => {
         </p>
         <ul className='social'>
           <li>
-            <a href='https://www.fullstackamr.com' target='_blank' title='Portfolio'>
+            <a href='https://www.fullstackamr.com' target='_blank' rel='noopener noreferrer' title='Portfolio'>
               <svg>
                 <use href={`${icons}#globe`} />
               </svg>
             </a>
           </li>
           <li>
-            <a href='https://twitter.com/fullstackamr' target='_blank' title='Twitter'>
+            <a href='https://twitter.com/fullstackamr' target='_blank' rel='noopener noreferrer' title='Twitter'>
               <svg>
                 <use href={`${icons}#twitter`} />
               </svg>
             </a>
           </li>
           <li>
-            <a href='https://www.linkedin.com/in/amr-abdelmoez/' target='_blank' title='LinkedIn'>
+            <a
+              href='https://www.linkedin.com/in/amr-abdelmoez/'
+              target='_blank'
+              rel='noopener noreferrer'
+              title='LinkedIn'>
               <svg>
                 <use href={`${icons}#linkedin`} />
               </svg>
             </a>
           </li>
           <li>
-            <a href='https://github.com/amr-adel' target='_blank' title='GitHub'>
+            <a href='https://github.com/amr-adel' target='_blank' rel='noopener noreferrer' title='GitHub'>
               <svg>
                 <use href={`${icons}#github`} />
               </svg>
             </a>
           </li>
           <li>
-            <a href='https://codepen.io/amr-adel/' target='_blank' title='CodePen'>
+            <a href='https://codepen.io/amr-adel/' target='_blank' rel='noopener noreferrer' title='CodePen'>
               <svg>
                 <use href={`${icons}#codepen`} />
               </svg>
             </a>
           </li>
           <li>
-            <a href='https://www.freecodecamp.org/amr-adel' target='_blank' title='FreeCodeCamp'>
+            <a
+              href='https://www.freecodecamp.org/amr-adel'
+              target='_blank'
+              rel='noopener noreferrer'
+              title='FreeCodeCamp'>
               <svg>
                 <use href={`${icons}#freecodecamp`} />
               </svg>
