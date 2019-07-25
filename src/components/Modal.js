@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { createPortal } from 'react-dom'
+import icons from '../icons.svg'
 import './Modal.scss'
 
 const modalRoot = document.getElementById('modal')
@@ -22,7 +23,10 @@ class Modal extends Component {
 
   handleToggle = () => {
     const modal = document.querySelector('.modal')
-    
+    const modalToggler = document.querySelector('.modal-toggler')
+
+    !this.state.showModal ? modalToggler.classList.add('close') : modalToggler.classList.remove('close')
+
     if (modal !== null) {
       modal.style.animation = 'zoom-reverse .3s ease-out'
       setTimeout(() => this.setState({ showModal: !this.state.showModal }), 300)
@@ -35,7 +39,9 @@ class Modal extends Component {
     return (
       <>
         <button className='modal-toggler' onClick={() => this.handleToggle()}>
-          Open Modal
+          <svg>
+            <use href={`${icons}#${this.state.showModal ? 'times' : 'info'}`} />
+          </svg>
         </button>
         {this.state.showModal ? <Portal hideModal={this.handleToggle}>Modal content</Portal> : null}
       </>
