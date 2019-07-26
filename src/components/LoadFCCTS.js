@@ -19,8 +19,20 @@ class ScriptLoader {
 }
 
 export const loadFCCTestSuite = () => {
-  if (!document.querySelector('#fcc_test_suite_wrapper'))
+  const fccTS = document.querySelector('#fcc_test_suite_wrapper')
+  const fccButton = document.querySelector('.fcc-button')
+  if (!fccTS)
     new ScriptLoader('https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js')
       .load()
+      .then(() => {
+        fccButton.innerHTML = 'FCC Test Suite loaded successfully'
+        setTimeout(() => {
+          fccButton.style.opacity = '0'
+          fccButton.style.maxHeight = '0'
+          setTimeout(() => {
+            fccButton.parentNode.removeChild(fccButton)
+          }, 500)
+        }, 1000)
+      })
       .catch(err => console.error(err))
 }

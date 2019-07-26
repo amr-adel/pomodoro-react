@@ -40,7 +40,11 @@ const ModalContent = () => {
           </a>{' '}
           was used too, to create this beautiful modal.{' '}
         </p>
-        <button onClick={() => loadFCCTestSuite()}>load FCC Test Suite</button>
+        {!document.querySelector('#fcc_test_suite_wrapper') && (
+          <button className='fcc-button' onClick={() => loadFCCTestSuite()}>
+            Load FCC Test Suite
+          </button>
+        )}
         <p className='text'>
           Interested in code? Check the project's repository on{' '}
           <a href='https://github.com/amr-adel/pomodoro-react' target='_blank' rel='noopener noreferrer'>

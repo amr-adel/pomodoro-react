@@ -260,6 +260,23 @@ body {
     flex-basis: 60%;
     overflow-y: auto;
     transition: all 0.5s ease-out 0.4s;
+
+    & .fcc-button {
+      color: var(--color-white);
+      font-size: 1.8rem;
+      background-color: #006400;
+      display: block;
+      margin: 1rem auto;
+      padding: 0.5rem 2rem;
+      border-radius: 3px;
+      cursor: pointer;
+      max-height: 20rem;
+      transition: all 0.5s ease-out;
+      
+      &:hover {
+        background-color: #027502;
+      }
+    }
   }
 
   & .follow {
