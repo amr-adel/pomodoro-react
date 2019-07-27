@@ -7,6 +7,7 @@
   background-color: rgba(4, 4, 4, 0.8);
   overflow: hidden;
   animation: zoom 0.3s ease-out;
+  z-index: 10;
 
   display: flex;
   justify-content: center;
@@ -77,7 +78,7 @@
 @keyframes zoom {
   0% {
     opacity: 0;
-    z-index: -1;
+    // z-index: -1;
     transform: scale(0.5, 0.01);
   }
   100% {
@@ -92,6 +93,9 @@
     opacity: 1;
     z-index: 1;
     transform: scale(1, 1);
+  }
+  99% {
+    z-index: 1;
   }
   100% {
     opacity: 0;

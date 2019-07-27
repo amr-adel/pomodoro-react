@@ -20,6 +20,7 @@ const controlLength = (state, label, operation) => {
       return {
         ...state,
         [toModify]: state[toModify] + 1,
+        progress: 100,
         timeLeft: { minutes: state.sessionLength + 1, seconds: 0 }
       }
     }
@@ -29,6 +30,7 @@ const controlLength = (state, label, operation) => {
       return {
         ...state,
         [toModify]: state[toModify] - 1,
+        progress: 100,
         timeLeft: { minutes: state.sessionLength - 1, seconds: 0 }
       }
     }

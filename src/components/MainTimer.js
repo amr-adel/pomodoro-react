@@ -22,9 +22,17 @@ const MainTimer = () => {
     }
   }
 
+  const calcRectProgress = () => {
+    const dashGap = 7 - (state.progress - 93)
+    return (state.progress > 93 ? `93, ${dashGap}` : `${state.progress}, 100`)
+  }
+
   return (
     <div className='main-timer'>
-      <aside className='progress-bar' style={{width: state.progress + '%'}} />
+      <svg className='progress'>
+        <rect className='rect-fill' width='100%' height='100%' rx='25%' ry='25%' />
+        <rect className='rect-progress' width='100%' height='100%' rx='25%' ry='25%' pathLength='100' strokeDasharray={calcRectProgress()} />
+      </svg>
       <div id='timer-label'>{state.mainTimerLabel}</div>
       <div id='time-left'>{renderTimeLeft()}</div>
       <div className='controls'>

@@ -64,12 +64,14 @@ body {
   align-items: flex-end;
 }
 
+// MAIN TIEMR ============================================================================
 .main-timer {
-  height: 40rem;
-  width: 40rem;
+  height: 42rem;
+  width: 42rem;
+  position: relative;
   background-color: var(--color-white);
   border-radius: 25%;
-  border: solid 3rem var(--color-secondary-transparent);
+  padding: 3rem 1rem;
   box-shadow: 0 0 5rem rgba(0, 0, 0, 0.1);
 
   order: 2;
@@ -98,6 +100,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    z-index: 2;
 
     & svg {
       height: 3.2rem;
@@ -113,6 +116,7 @@ body {
   }
 }
 
+// CONTROLLER ============================================================================
 .controller {
   & .control-box {
     width: 16rem;
@@ -272,7 +276,7 @@ body {
       cursor: pointer;
       max-height: 20rem;
       transition: all 0.5s ease-out;
-      
+
       &:hover {
         background-color: #027502;
       }
@@ -313,13 +317,25 @@ body {
     }
   }
 }
-// PROGRESS BAR ========================================================================
 
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 1rem;
-  width: 100vw;
-  background-color: #fff;
+// PROGRESS BAR ============================================================================
+.progress {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  position: absolute;
+  fill: transparent;
+  border-radius: 25%;
+  stroke-width: 6rem;
+  z-index: 1;
+
+  & .rect-progress {
+    stroke: #d6dff5;
+    transition: stroke-dasharray 0.2s ease-out;
+    stroke-dashoffset: -7;
+  }
+
+  & .rect-fill {
+    stroke: #e5e5e5;
+  }
 }
