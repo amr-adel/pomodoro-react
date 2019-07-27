@@ -8,7 +8,8 @@ export const initialState = {
   timeLeft: {
     minutes: 25,
     seconds: 0
-  }
+  },
+  progress: 100
 }
 
 const controlLength = (state, label, operation) => {
@@ -39,20 +40,33 @@ const controlLength = (state, label, operation) => {
 const tick = state => {
   const { minutes, seconds } = state.timeLeft
 
+  let newState = { ...state }
+
   if (minutes === 0 && seconds === 0) {
     if (state.mainTimerLabel === 'session') {
       // START BREAK TIMER
       beep.play()
-      return { ...state, mainTimerLabel: 'break', timeLeft: { minutes: state.breakLength, seconds: 0 } }
+      newState.mainTimerLabel = 'break'
+      newState.timeLeft = { minutes: state.breakLength, seconds: 0 }
     } else {
       beep.play()
-      return { ...initialState }
+      clearInterval(window.timerID)
+      newState = { ...initialState }
     }
   } else if (seconds === 0) {
-    return { ...state, timeLeft: { minutes: minutes - 1, seconds: 59 } }
+    newState.timeLeft = { minutes: minutes - 1, seconds: 59 }
   } else {
-    return { ...state, timeLeft: { minutes: minutes, seconds: seconds - 1 } }
+    newState.timeLeft = { minutes: minutes, seconds: seconds - 1 }
   }
+
+  newState.progress = Number(
+    (
+      ((newState.timeLeft.minutes + newState.timeLeft.seconds / 60) / newState[`${newState.mainTimerLabel}Length`]) *
+      100
+    ).toFixed(2)
+  )
+
+  return newState
 }
 
 export const timerReducer = (state, action) => {

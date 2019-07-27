@@ -24,6 +24,7 @@ const MainTimer = () => {
 
   return (
     <div className='main-timer'>
+      <aside className='progress-bar' style={{width: state.progress + '%'}} />
       <div id='timer-label'>{state.mainTimerLabel}</div>
       <div id='time-left'>{renderTimeLeft()}</div>
       <div className='controls'>

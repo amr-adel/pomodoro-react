@@ -313,3 +313,13 @@ body {
     }
   }
 }
+// PROGRESS BAR ========================================================================
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1rem;
+  width: 100vw;
+  background-color: #fff;
+}
