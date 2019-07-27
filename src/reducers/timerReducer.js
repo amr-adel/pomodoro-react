@@ -13,30 +13,27 @@ export const initialState = {
 }
 
 const controlLength = (state, label, operation) => {
+  let newState = { ...state }
+
   let toModify = `${label}Length`
 
   if (operation === 'increment' && state[toModify] < 60) {
-    if (label === 'session') {
-      return {
-        ...state,
-        [toModify]: state[toModify] + 1,
-        progress: 100,
-        timeLeft: { minutes: state.sessionLength + 1, seconds: 0 }
-      }
+    newState[toModify] = state[toModify] + 1
+    if (label === state.mainTimerLabel) {
+      newState.timeLeft = { minutes: state.sessionLength + 1, seconds: 0 }
+      newState.progress = 100
     }
-    return { ...state, [toModify]: state[toModify] + 1 }
-  } else if (operation === 'decrement' && state[toModify] > 1) {
-    if (label === 'session') {
-      return {
-        ...state,
-        [toModify]: state[toModify] - 1,
-        progress: 100,
-        timeLeft: { minutes: state.sessionLength - 1, seconds: 0 }
-      }
-    }
-    return { ...state, [toModify]: state[toModify] - 1 }
   }
-  return state
+
+  if (operation === 'decrement' && state[toModify] > 1) {
+    newState[toModify] = state[toModify] - 1
+    if (label === state.mainTimerLabel) {
+      newState.timeLeft = { minutes: state.sessionLength - 1, seconds: 0 }
+      newState.progress = 100
+    }
+  }
+
+  return newState
 }
 
 const tick = state => {
