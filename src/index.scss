@@ -34,6 +34,7 @@ button {
   border: none;
   color: inherit;
   background: none;
+  outline: none;
 }
 
 html {
@@ -68,6 +69,8 @@ body {
 .main-timer {
   height: 42rem;
   width: 42rem;
+  max-height: 80vh;
+  max-width: 80vh;
   position: relative;
   background-color: var(--color-white);
   border-radius: 25%;
@@ -103,8 +106,8 @@ body {
     z-index: 2;
 
     & svg {
-      height: 3.2rem;
-      width: 3.2rem;
+      height: calc(var(--icon-size) * 1.333);
+      width: calc(var(--icon-size) * 1.333);
       color: var(--color-grey-light);
       transition: color 0.2s ease-out;
       cursor: pointer;
@@ -129,6 +132,7 @@ body {
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
     & button {
       height: 6rem;
@@ -337,5 +341,56 @@ body {
 
   & .rect-fill {
     stroke: #e5e5e5;
+  }
+}
+
+// MEDIA QUERIES ============================================================================
+@media screen and (min-width: 1681px) {
+  html {
+    font-size: 72%;
+  }
+}
+
+@media screen and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  :root {
+    --icon-size: 4rem;
+  }
+
+  html {
+    font-size: 55%;
+  }
+
+  #root {
+    flex-wrap: wrap;
+  }
+
+  .main-timer {
+    height: 60vw;
+    width: 60vw;
+    margin: 10vw;
+    order: 1;
+  }
+
+  .controller .control-box {
+    width: 25rem;
+    height: 25rem;
+    margin: 0 auto;
+
+    & button {
+      height: 8rem;
+      width: 8rem;
+
+      &:hover {
+        opacity: 0.5;
+
+        & svg {
+          filter: none;
+        }
+      }
+    }
+
+    & .length {
+      font-size: 6rem;
+    }
   }
 }
