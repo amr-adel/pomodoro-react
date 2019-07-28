@@ -17,19 +17,21 @@ const controlLength = (state, label, operation) => {
 
   let toModify = `${label}Length`
 
-  if (operation === 'increment' && state[toModify] < 60) {
-    newState[toModify] = state[toModify] + 1
-    if (label === state.mainTimerLabel) {
-      newState.timeLeft = { minutes: state.sessionLength + 1, seconds: 0 }
-      newState.progress = 100
+  if (!state.active) {
+    if (operation === 'increment' && state[toModify] < 60) {
+      newState[toModify] = state[toModify] + 1
+      if (label === state.mainTimerLabel) {
+        newState.timeLeft = { minutes: state.sessionLength + 1, seconds: 0 }
+        newState.progress = 100
+      }
     }
-  }
 
-  if (operation === 'decrement' && state[toModify] > 1) {
-    newState[toModify] = state[toModify] - 1
-    if (label === state.mainTimerLabel) {
-      newState.timeLeft = { minutes: state.sessionLength - 1, seconds: 0 }
-      newState.progress = 100
+    if (operation === 'decrement' && state[toModify] > 1) {
+      newState[toModify] = state[toModify] - 1
+      if (label === state.mainTimerLabel) {
+        newState.timeLeft = { minutes: state.sessionLength - 1, seconds: 0 }
+        newState.progress = 100
+      }
     }
   }
 
