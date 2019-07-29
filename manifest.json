@@ -1,0 +1,16 @@
+{
+  "short_name": "Pomodoro",
+  "name": "Gorgeous Pomodoro Clock",
+  "icons": [
+    {
+      "src": "pomodoro-app-icon.png",
+      "sizes": "512x512 192x192 144x144 128x128 64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#d6dff5",
+  "background_color": "#d6dff5",
+  "orientation": "portrait"
+}
