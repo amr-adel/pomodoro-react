@@ -3,13 +3,14 @@
   "name": "Gorgeous Pomodoro Clock",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "128x128 64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "pomodoro-app-icon.png",
+      "sizes": "512x512 192x192 144x144 128x128 64x64 32x32 24x24 16x16",
+      "type": "image/png"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#D6A4A4",
-  "background_color": "#e6e6e6"
+  "theme_color": "#d6dff5",
+  "background_color": "#d6dff5",
+  "orientation": "portrait"
 }
